@@ -9,7 +9,44 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+        <div>
+            <h2>Joe banker</h2>
+            <!-- Balance - Shows bank balance -->
+            <!-- Outstanding Loan  - visible after taking a loan, show the loan value-->
+            <!-- Balance - Get loan button, show prompt box and let the user request an amount -->
+            <!-- Balance - Constraint - You cannot get a loan more than twice the amount of money you have -->
+            <!-- Balance - You cannot get more than one loan before buying a computer -->
+            <!-- Balance - Once you have a loan you must pay it back before being able to take a new one-->
+
+            <div>Balance: <span id = "balance">0</span></div>
+            <div>Outstanding Loan: <span id = "outstandingLoan">0</span></div>
+
+            <button type="button" onclick="getLoan()">Get a loan</button>
+        </div>
+
+        <div>
+            <h2>Work</h2>
+            <!--Pay - Should show how much money you have in your wallet-->
+            <!-- Bank button - Transfer the money from your wallet to the bank-->
+            <!-- Bank Button - If you have a loan, 10% salary must be deducted and transfered to the loan amount-->
+            <!---Bank button -The balance after the 10% deduction can be transfered -->
+            <!-- Work button - Increses your pay by 100 for each click -->
+            <!-- Repay Loan Button - Once you have a loan, Full value of your pay amount should go into the loan
+            amount -->
+
+                <div>Pay: <span id = "pay">0</span></div>
+
+                <button type="button" style="background-color: yellow;" onclick="transferToBank()">Bank</button>
+                <button type="button" style="background-color: blue;" onclick="work()">Work</button>
+
+                <!--If you have a loan-->
+                <button type="button" style="display: none;" id = "repayLoan" onclick="repayLoan()">Repay loan</button>
+        </div>
+
+
+
         
-        <script src="script.js" defer></script>
+    
+    <script src="script.js" defer></script>
     </body>
 </html>
