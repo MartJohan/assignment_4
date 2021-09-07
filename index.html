@@ -1,52 +1,87 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-        <div>
-            <h2>Joe banker</h2>
-            <!-- Balance - Shows bank balance -->
-            <!-- Outstanding Loan  - visible after taking a loan, show the loan value-->
-            <!-- Balance - Get loan button, show prompt box and let the user request an amount -->
-            <!-- Balance - Constraint - You cannot get a loan more than twice the amount of money you have -->
-            <!-- Balance - You cannot get more than one loan before buying a computer -->
-            <!-- Balance - Once you have a loan you must pay it back before being able to take a new one-->
-
-            <div>Balance: <span id = "balance">0</span></div>
-            <div>Outstanding Loan: <span id = "outstandingLoan">0</span></div>
-
-            <button type="button" onclick="getLoan()">Get a loan</button>
-        </div>
-
-        <div>
-            <h2>Work</h2>
-            <!--Pay - Should show how much money you have in your wallet-->
-            <!-- Bank button - Transfer the money from your wallet to the bank-->
-            <!-- Bank Button - If you have a loan, 10% salary must be deducted and transfered to the loan amount-->
-            <!---Bank button -The balance after the 10% deduction can be transfered -->
-            <!-- Work button - Increses your pay by 100 for each click -->
-            <!-- Repay Loan Button - Once you have a loan, Full value of your pay amount should go into the loan
-            amount -->
-
-                <div>Pay: <span id = "pay">0</span></div>
-
-                <button type="button" style="background-color: yellow;" onclick="transferToBank()">Bank</button>
-                <button type="button" style="background-color: blue;" onclick="work()">Work</button>
-
-                <!--If you have a loan-->
-                <button type="button" style="display: none;" id = "repayLoan" onclick="repayLoan()">Repay loan</button>
-        </div>
-
-
-
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+</head>
+  <body onload="fetchComputers()">
+    <header style="background-color: rgb(91, 105, 117); width: 100%; height: fit-content; padding: 1px; margin-bottom:30px;">
+        <h1 style = "color: white;">Komputer store</h1>
+    </header>
+    <div class="container">
         
-    
+      <div class="row" style="border: solid black 2px;">
+
+        <div class = "col-6" class = "bank">
+          <h2>Joe banker</h2>
+          <div>Balance:  <span id = "balance">0</span></div> <br/>
+          <div>Outstanding loan:  <span id = "outstandingLoan">0</span></div> <br/>
+          <button onclick="getLoan()" class="btn btn-secondary">Get a loan</button>
+        </div>  
+
+
+        <div class = "col-6">
+          <h2>Work</h2>
+          <div>Amount in wallet: <span id="pay">0</span></div>
+            <br/>
+            <div class="row">
+            <div class="col"><button onclick="transferToBank()" class="btn btn-secondary form-control">Bank</button></div>
+            <div class="col"><button onclick="work()" class ="btn btn-primary form-control">Work</button></div>
+          </div>
+          <!--If you have a loan-->
+          <br/>
+          <button
+            type="button" style="display: none;" id="repayLoan" class ="btn btn-danger form-control" onclick="repayLoan()">
+            Repay loan
+          </button>
+          <br/>
+        </div>
+      </div>
+      <!-- END ROW -->  <br/>
+
+      <div class="row" style="border: solid black 2px;">
+        <div class = "col-6">
+          <h3>Computers: </h3>
+        <select id="computers" class="input-group">
+          <option value="" selected="true" disabled="disabled">
+            --Please choose an option--
+          </option>
+        </select>
+        <br/>
+        <div id="computerImage"></div>
+        <br/>
+        </div>
+
+        <div class="col-6">
+          <h4>Features:</h4>
+          <div id="computerFeatures"></div>
+        </div>
+      </div> <!-- END ROW -->
+      <br/>
+      <div class="row" style="border: solid black 2px; display : none; text-align:center; " id = "computerDiv">
+        <div class="row">
+          <div class = "col-12">
+            <div>
+              <h2 id="computerTitle"></h2>
+              <p id="computerDescription"></p>
+            </div>
+  
+            <div>
+              <p>Price: <strong id="computerPrice"></strong></p>
+              <button type="button" id="btnComputerBuy" onclick="buyComputer()" class="btn btn-success">
+                Buy now
+              </button>
+          </div>
+          </div>
+        </div>
+      </div> <!-- END ROW -->
+
+    </div> <!-- END CONTAINER -->
+<br/> <br/>
     <script src="script.js" defer></script>
-    </body>
+  </body>
 </html>
