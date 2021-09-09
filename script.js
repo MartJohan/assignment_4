@@ -35,7 +35,7 @@ let computerDiv = document.getElementById("computerDiv");
 
 //Tracks the chosen computer
 let currentComputer = undefined;
-//Checks if you can take a loan
+//Checks if you can take a loan, gives you the loan if possible
 function getLoan() {
 
     if(hasLoan) { alert("You already have a loan, pay it off first");}
@@ -55,11 +55,13 @@ function getLoan() {
     }
 }
 
+//Each time you click the "work" button this function gives you alot of money
 function work() {
     pay += 100;
     payHTML.innerText = pay.toString();
 }
 
+//Transfers your money to the bank, if you have a loan, 10% will be a transfer fee
 function transferToBank() {
 
     if(hasLoan) {
@@ -85,6 +87,7 @@ function transferToBank() {
     }
 }
 
+//Repays your loan
 function repayLoan() {
     let diff = pay - loanAmount;
     if(diff >= 0) {
@@ -99,6 +102,7 @@ function repayLoan() {
     loanAmountHTML.innerText = loanAmount.toString();
 }
 
+//Gets all the computers
 function fetchComputers() {
     fetch(url).then(response => response.json())
     .then(data => allComputers = data)
@@ -106,19 +110,15 @@ function fetchComputers() {
     .catch(err => console.log(err));
 }
 
-const addComputers = (computers) => {
-    computers.forEach(c => addComputer(c));
-}
-
 //Looping through each computer and adds it to the select list
-const addComputer = (computer) => {
+const addComputers = (computers) => {
+    computers.forEach(c => {
     const computerElement = document.createElement("option");
-    computerElement.value = computer.id;
-    computerElement.appendChild(document.createTextNode(computer.title));
+    computerElement.value = c.id;
+    computerElement.appendChild(document.createTextNode(c.title));
     computersHTML.appendChild(computerElement);
-    
+    });
 }
-
 //Each time the computer changes in the selection menu
 function changeComputer() {
     resetValues(); //Reset all the values on the site
@@ -148,6 +148,7 @@ function changeComputer() {
     computerImage.appendChild(img);
 }
 
+//Tries to buy a computer
 function buyComputer() {
     //Find out which computer you want
     //Check the price to the bank balance
@@ -163,6 +164,7 @@ function buyComputer() {
     
 }
 
+//Resets the values on the site
 function resetValues() {
     computerTitle.innerHTML = "";
     computerDescription.innerHTML = "";
